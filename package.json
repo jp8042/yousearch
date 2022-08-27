@@ -1,0 +1,36 @@
+{
+  "name": "yousearch",
+  "version": "1.0.0",
+  "description": "Use search api of youtube and save response per certain timeperiod",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "eslint -c .eslintrc.js . --ext .js",
+    "fixLint": "eslint -c .eslintrc.js . --ext .js --fix",
+    "dev": "source ./.env && node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jp8042/yousearch.git"
+  },
+  "keywords": [
+    "youtube",
+    "search",
+    "api"
+  ],
+  "author": "Jevesh",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jp8042/yousearch/issues"
+  },
+  "homepage": "https://github.com/jp8042/yousearch#readme",
+  "dependencies": {
+    "celebrate": "^9.0.1",
+    "express": "^4.18.1"
+  },
+  "devDependencies": {
+    "eslint": "^8.23.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.26.0"
+  }
+}
