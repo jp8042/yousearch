@@ -1,4 +1,5 @@
 // const { celebrate } = require('celebrate');
+// const { celebrate } = require('celebrate');
 const healthController = require('../controller/healthController');
 
 module.exports = (app) => {
@@ -7,4 +8,10 @@ module.exports = (app) => {
   //= ===================================================================================
 
   app.get('/health', healthController.getHealthStatus);
+
+  //= ===================================================================================
+  // Youtube routes
+  //= ===================================================================================
+
+  // app.get('/search', celebrate(schemas.))
 };

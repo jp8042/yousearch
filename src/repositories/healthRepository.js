@@ -1,6 +1,9 @@
+const mongoose = require('mongoose');
+
 const healthCheck = async () => {
-  // check database connection
-  console.log('healthCheck: mast hai');
+  if (mongoose.connection.readyState !== 1) {
+    throw (new Error(`Mongoose connection State ${mongoose.STATES[mongoose.connection.readyState]}`));
+  }
 };
 
 module.exports = {

@@ -1,7 +1,7 @@
 const { Joi } = require('celebrate');
 
 const envVarsSchema = Joi.object({
-  MONGODB_URI: Joi.string()
+  API_KEYS: Joi.string()
     .required(),
 }).unknown()
   .required();
@@ -12,8 +12,8 @@ if (error) {
 }
 
 const config = {
-  mongo: {
-    uri: envVars.MONGODB_URI,
+  youtube: {
+    apiKeys: envVars.API_KEYS,
   },
 };
 

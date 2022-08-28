@@ -2,25 +2,19 @@ const mongoose = require('mongoose');
 
 const { mongo } = require('../config/mongo');
 
-const connect = (callback) => {
+const connect = async () => {
   // const uri = `mongodb://${mongo.username}:${mongo.password}@${mongo.host}:${mongo.port}/${mongo.database}`;
   const options = {
     useNewUrlParser: true,
     autoIndex: false,
-    useFindAndModify: false,
-    reconnectTries: Number.MAX_VALUE,
-    reconnectInterval: mongo.reconnectInterval,
-    poolSize: mongo.poolSize,
-    connectTimeoutMS: mongo.connectTimeout,
-    socketTimeoutMS: mongo.socketTimeout,
   };
-  mongoose.connect(mongo.uri, options, (error) => {
-    if (error) {
-      callback(error);
-    } else {
-      callback();
-    }
-  });
+  try {
+    await mongoose.connect(mongo.uri, options);
+    console.log(`Mongoose connection State ${mongoose.STATES[mongoose.connection.readyState]}`);
+  } catch (error) {
+    console.log('Unable to connect to Datastore. ', error);
+    throw error;
+  }
 };
 
 mongoose.connection.on('connected', () => {
