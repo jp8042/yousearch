@@ -4,6 +4,7 @@ const cron = require('node-cron');
 
 const app = express();
 const serverConfig = require('./src/config/server');
+const { youtube } = require('./src/config/youtube');
 const routes = require('./src/routes');
 const datastore = require('./src/common/datastore');
 const videoService = require('./src/services/videoService');
@@ -12,7 +13,7 @@ app.use(express.json());
 routes(app);
 
 cron.schedule('*/20 * * * * *', () => {
-  videoService.searchVideos('cricket');
+  videoService.searchVideos(youtube.data.searchQuery);
 });
 
 const spinUpServer = async () => {
