@@ -26,7 +26,7 @@ Clone the project
 Go to the project directory
 
 ```bash
-  cd my-project
+  cd yousearch
 ```
 
 Install dependencies
@@ -57,7 +57,7 @@ Start the server
 | `sort`    | `string` | Publishing Sort Direction (asc, desc)  |   desc
 
 
-#### Get videos by keyword (v1)
+#### Get videos by keyword (v2)
 
 ```http
   GET /v2/search/
