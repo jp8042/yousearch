@@ -3,7 +3,7 @@ const nlp = require('compromise');
 const { youtube } = require('../config/youtube');
 const youtubeClient = require('../clients/youtubeClient');
 const videosRepository = require('../repositories/videosRepository');
-
+// TODO: logic to update workingApiKeyIndex, need to exhaust limit of youtube data api.
 const workingApiKeyIndex = 0;
 
 const getYoutubeVideoQuery = (query) => `part=snippet&q=${query.replaceAll('#', '%7C')}&type=video&key=${_.split(youtube.apiKeys, ',')[workingApiKeyIndex]}&order=date&publishedAfter=${new Date(Date.now() - (20 * 1002)).toISOString()}`;
@@ -61,10 +61,12 @@ const searchVideos = async (query) => {
 };
 
 const getDBQuery = (keywords, lastPublishedAt) => {
+  const keywordRegex = `.*(${keywords.replaceAll(' ', '|')}).*`;
+  console.log(`keywordRegex: ${keywordRegex}`);
   const queryObj = {
     $or: [
-      { title: { $regex: keywords, $options: 'i' } },
-      { description: { $regex: keywords, $options: 'i' } },
+      { title: { $regex: keywordRegex, $options: 'i' } },
+      { description: { $regex: keywordRegex, $options: 'i' } },
     ],
     ...(lastPublishedAt ? { published_at: { $gte: lastPublishedAt } } : {}),
     // thought about using tags, but decided to use title
@@ -132,6 +134,7 @@ const getVideosByKeywordsV2 = async (query) => {
       size,
       videos: clientRepresentableVideos,
     };
+    // maybe should have kept page here
   } catch (err) {
     console.log(`Error in getVideosByKeywords api: ${JSON.stringify(err)}`);
     throw err;

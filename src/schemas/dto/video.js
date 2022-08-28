@@ -12,7 +12,7 @@ const getVideosByKeywords = {
 const getVideosByKeywordsV2 = {
   query: Joi.object({
     keywords: Joi.string().required(),
-    lastPublishedAt: Joi.string().required(),
+    lastPublishedAt: Joi.string(),
     size: Joi.number().default(10),
     sort: Joi.string().valid(['asc', 'desc']).default('desc'),
   }).unknown().required(),

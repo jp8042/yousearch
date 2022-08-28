@@ -12,7 +12,7 @@ app.use(express.json());
 routes(app);
 
 cron.schedule('*/20 * * * * *', () => {
-  videoService.searchVideos('this is life');
+  videoService.searchVideos('cricket');
 });
 
 const spinUpServer = async () => {

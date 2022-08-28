@@ -2,7 +2,6 @@ const axios = require('axios');
 
 const searchVideos = async (query) => {
   const url = `https://youtube.googleapis.com/youtube/v3/search?${query}`;
-  console.log(url);
   const options = {
     headers: {
       Accept: 'application/json',
